@@ -3,14 +3,15 @@
         "site_name": "vue spa sample",
         "description": "Welcome to Your Vue.js App",
         "url": " https://example.com/",
-        "ogp_image_url": "https://example.com/assets/img/ogp.png",
+        "ogp_image_url": "https://example.com/assets/direct/ogp.png",
         "facebook_app_id": "",
-        "favicon_url": "/assets/img/favicon.png",
-        "webclipicon_url": "/assets/img/webclipicon.png"
+        "favicon_url": "/assets/direct/favicon.ico",
+        "webclipicon_url": "/assets/direct/webclipicon.png"
     },
     "dev": {
         "port": "3000",
         "dist": "dist",
-        "src": "src"
+        "src": "src",
+        "assets": "assets"
     }
 }

@@ -5,6 +5,7 @@ import gulp from 'gulp';
 import watch from 'gulp-watch';
 import pug from 'gulp-pug';
 import open from 'gulp-open';
+import readConfig from 'read-config';
 
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
@@ -16,10 +17,12 @@ const SRC = `./${CONFIG.dev.src}`;
 const HTDOCS = `./${CONFIG.dev.dist}`;
 const BASE_PATH = '';
 const DEST = `${HTDOCS}${BASE_PATH}`;
+const ASSETS = CONFIG.dev.assets;
 
 // html
 gulp.task('pug', () => {
-  const locals = CONFIG.meta;
+  const { meta } = readConfig('./config.json');
+  const locals = meta;
   locals.basePath = BASE_PATH;
 
   return gulp.src(`${SRC}/pug/**/[!_]*.pug`)
@@ -32,10 +35,24 @@ gulp.task('pug', () => {
 
 gulp.task('html', ['pug']);
 
+// copy
+
+gulp.task('copy', function () {
+     return gulp
+         .src(`${SRC}/direct/*`)
+         .pipe(gulp.dest(`${DEST}/${ASSETS}/direct`));
+});
+
 gulp.task('watch', () => {
-  watch([`${SRC}/pug/**/*.pug`], () => {
+  watch([
+      `${SRC}/pug/**/*.pug`,
+      './config.json'
+    ], () => {
     gulp.start('pug')
-    //TODO: reload;
+    //TODO: reload on dev server
+  })
+  watch([`${SRC}/direct/*`], () => {
+    gulp.start('copy')
   })
 });
 
@@ -59,4 +76,4 @@ gulp.task('webpack-dev-server', (callback) => {
   });
 });
 
-gulp.task('default', ['webpack-dev-server', 'html', 'watch', 'open']);
+gulp.task('default', ['webpack-dev-server', 'html', 'watch', 'copy', 'open']);

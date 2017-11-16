@@ -13,6 +13,8 @@ import {
     mapGetters,
     mapActions
 } from 'vuex';
+import changeTitle from './mixins/changeTitle';
+
 export default {
     name: 'top',
     data() {
@@ -25,7 +27,10 @@ export default {
     },
     methods: {
         ...mapActions(['changeSampleName'])
-    }
+    },
+    mixins: [
+        changeTitle
+    ],
 }
 </script>
 

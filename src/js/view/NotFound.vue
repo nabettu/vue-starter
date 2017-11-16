@@ -5,12 +5,17 @@
 </template>
 
 <script>
+import changeTitle from './mixins/changeTitle';
 export default {
-    name: 'about',
+    name: 'notFound',
+    title: 'notFound',
     data() {
         return {
             msg: 'oh. page not found.'
         }
     },
+    mixins: [
+        changeTitle
+    ],
 }
 </script>

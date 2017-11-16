@@ -6,6 +6,7 @@ import CONFIG from './config.json';
 const PORT = CONFIG.dev.port;
 const DIST = CONFIG.dev.dist;
 const SRC = CONFIG.dev.src;
+const ASSETS = CONFIG.dev.assets;
 
 let entry_app = [`./${SRC}/main.js`];
 if (process.env.NODE_ENV === 'development') {
@@ -20,8 +21,8 @@ module.exports = {
     app: entry_app
   },
   output: {
-    path: path.resolve(__dirname, './' + DIST + '/assets/'),
-    publicPath: '/assets/',
+    path: path.resolve(__dirname, './' + DIST + '/' + ASSETS + '/'),
+    publicPath: '/' + ASSETS + '/',
     filename: 'bundle.js'
   },
   module: {
