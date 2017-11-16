@@ -1,7 +1,13 @@
-import Vue from 'vue'
-import App from './js/App.vue'
+import "babel-polyfill";
+import Vue from 'vue';
+
+import store from './js/store';
+import router from './js/router';
+import Root from './js/Root.vue';
 
 new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+    el: document.getElementById('app'),
+    store,
+    router,
+    render: (h) => h(Root)
+});

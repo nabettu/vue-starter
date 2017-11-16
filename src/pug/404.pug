@@ -1,9 +1,12 @@
-doctype html
-html(lang="en")
-	head
-		meta(charset="utf-8")
-		title pug
-	body
-		h1 404
-		#app
-		script(src="./build.js")
+extends /layout/_default-layout
+
+prepend config-block
+    - page_id = 'notFound'
+
+//- append stylesheet-block
+
+//- append javascript-block
+
+block content-block
+    script.
+        location.replace('/#/404');

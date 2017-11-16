@@ -1,9 +1,11 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="utf-8")
-        title pug
-    body
-        h1 index
-        #app
-        script(src="./assets/bundle.js")
+extends /layout/_default-layout
+
+prepend config-block
+    - page_name = ''
+
+//- append stylesheet-block
+
+//- append javascript-block
+
+block content-block
+    #app

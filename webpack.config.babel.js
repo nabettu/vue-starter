@@ -2,10 +2,12 @@
 import path from 'path';
 import webpack from 'webpack'
 
-const PORT = 3000;
-const DIST = 'dist';
+import CONFIG from './config.json';
+const PORT = CONFIG.dev.port;
+const DIST = CONFIG.dev.dist;
+const SRC = CONFIG.dev.src;
 
-let entry_app = ['./src/main.js'];
+let entry_app = [`./${SRC}/main.js`];
 if (process.env.NODE_ENV === 'development') {
   entry_app.unshift(
     'webpack-dev-server/client?http://localhost:' + PORT,

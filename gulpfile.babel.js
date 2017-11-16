@@ -9,18 +9,17 @@ import open from 'gulp-open';
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
 import webpackConfig from './webpack.config.babel';
+import CONFIG from './config.json';
 
 // const
-const SRC = './src';
-const HTDOCS = './' + webpackConfig.devServer.contentBase;
+const SRC = `./${CONFIG.dev.src}`;
+const HTDOCS = `./${CONFIG.dev.dist}`;
 const BASE_PATH = '';
 const DEST = `${HTDOCS}${BASE_PATH}`;
 
-import meta from './src/config/meta.json';
-
 // html
 gulp.task('pug', () => {
-  const locals = meta;
+  const locals = CONFIG.meta;
   locals.basePath = BASE_PATH;
 
   return gulp.src(`${SRC}/pug/**/[!_]*.pug`)
@@ -42,21 +41,21 @@ gulp.task('watch', () => {
 
 gulp.task('open', function(){
   gulp.src('.')
-  .pipe(open({uri:'http://localhost:' + webpackConfig.devServer.port}));
+  .pipe(open({uri:'http://localhost:' + CONFIG.dev.port}));
 });
 
 gulp.task('webpack-dev-server', (callback) => {
   const compiler = webpack(webpackConfig);
 
   new webpackDevServer(compiler, {
-    contentBase: webpackConfig.devServer.contentBase,
+    contentBase: CONFIG.dev.dist,
     publicPath: webpackConfig.output.publicPath,
     hot: true,
-  }).listen(webpackConfig.devServer.port, 'localhost', (err) => {
+  }).listen(CONFIG.dev.port, 'localhost', (err) => {
     if (err) {
       console.log(err);
     }
-    console.log('Listening at localhost:' + webpackConfig.devServer.port);
+    console.log('Listening at localhost:' + CONFIG.dev.port);
   });
 });
 
