@@ -77,3 +77,5 @@ gulp.task('webpack-dev-server', (callback) => {
 });
 
 gulp.task('default', ['webpack-dev-server', 'html', 'watch', 'copy', 'open']);
+
+gulp.task('build', ['html', 'copy']);
