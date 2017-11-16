@@ -28,3 +28,13 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../scss/common';
+button {
+    border: $color solid 1px;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    @include hover;
+}
+</style>

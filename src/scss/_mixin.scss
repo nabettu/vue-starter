@@ -1,0 +1,17 @@
+@mixin pc {
+   @media (min-width: $pc_min_width){
+    @content;
+  }
+}
+@mixin sp {
+   @media (max-width: ($pc_min_width - 1)){
+    @content;
+  }
+}
+@mixin hover {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}

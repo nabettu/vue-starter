@@ -1,3 +1,5 @@
+import 'reset.css';
+import './scss/style.scss';
 import "babel-polyfill";
 import Vue from 'vue';
 
