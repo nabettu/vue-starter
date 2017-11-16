@@ -6,11 +6,19 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "npm run dev",
+    "start": "cross-env NODE_ENV=development gulp",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules | gulp html"
   },
   "dependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "gulp": "^3.9.1",
+    "gulp-open": "^2.0.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-watch": "^4.3.11",
     "pug": "^2.0.0-rc.4",
     "pug-loader": "^2.3.0",
     "vue": "^2.4.4"
@@ -34,5 +42,20 @@
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ],
+      "stage-3"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
   }
 }

@@ -1,39 +1,39 @@
-var path = require('path')
-var webpack = require('webpack')
+'use strict';
+import path from 'path';
+import webpack from 'webpack'
+
+const PORT = 3000;
+const DIST = 'dist';
+
+let entry_app = ['./src/main.js'];
+if (process.env.NODE_ENV === 'development') {
+  entry_app.unshift(
+    'webpack-dev-server/client?http://localhost:' + PORT,
+    'webpack/hot/dev-server'
+  );
+}
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: entry_app
+  },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    path: path.resolve(__dirname, './' + DIST + '/assets/'),
+    publicPath: '/assets/',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
-      },
-      {
+        use: ['vue-style-loader', 'css-loader']
+      }, {
         test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
-      },
-      {
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      }, {
         test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader?indentedSyntax'
-        ],
-      },
-      {
+        use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+      }, {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -42,25 +42,17 @@ module.exports = {
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
             'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
+              'vue-style-loader', 'css-loader', 'sass-loader'
             ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
+            'sass': ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
           }
           // other vue-loader options go here
         }
-      },
-      {
+      }, {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
-      {
+      }, {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
@@ -76,14 +68,16 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
+    contentBase: DIST,
+    port: PORT,
   },
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -101,8 +95,6 @@ if (process.env.NODE_ENV === 'production') {
         warnings: false
       }
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
+    new webpack.LoaderOptionsPlugin({minimize: true})
   ])
 }
