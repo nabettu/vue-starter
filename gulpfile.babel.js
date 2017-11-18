@@ -39,8 +39,8 @@ gulp.task('html', ['pug']);
 
 gulp.task('copy', function () {
      return gulp
-         .src(`${SRC}/direct/*`)
-         .pipe(gulp.dest(`${DEST}/${ASSETS}/direct`));
+         .src(`${SRC}/static/**`)
+         .pipe(gulp.dest(`${DEST}/`));
 });
 
 gulp.task('watch', () => {

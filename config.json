@@ -3,10 +3,10 @@
         "site_name": "vue spa sample",
         "description": "Welcome to Your Vue.js App",
         "url": " https://example.com/",
-        "ogp_image_url": "https://example.com/assets/direct/ogp.png",
+        "ogp_image_url": "https://example.com/img/ogp.png",
         "facebook_app_id": "",
-        "favicon_url": "/assets/direct/favicon.ico",
-        "webclipicon_url": "/assets/direct/webclipicon.png"
+        "favicon_url": "/img/favicon.ico",
+        "webclipicon_url": "/img/webclipicon.png"
     },
     "dev": {
         "port": "3000",
