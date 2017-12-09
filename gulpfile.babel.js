@@ -68,7 +68,7 @@ gulp.task('webpack-dev-server', (callback) => {
     contentBase: CONFIG.dev.dist,
     publicPath: webpackConfig.output.publicPath,
     hot: true,
-  }).listen(CONFIG.dev.port, 'localhost', (err) => {
+  }).listen(CONFIG.dev.port, '0.0.0.0', (err) => {
     if (err) {
       console.log(err);
     }
