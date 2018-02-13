@@ -1,6 +1,6 @@
 import 'reset.css';
 import './scss/style.scss';
-import "babel-polyfill";
+import 'babel-polyfill';
 import Vue from 'vue';
 
 import store from './js/store';

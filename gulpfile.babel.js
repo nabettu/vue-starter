@@ -24,6 +24,8 @@ gulp.task('pug', () => {
   const { meta } = readConfig('./config.json');
   const locals = meta;
   locals.basePath = BASE_PATH;
+  locals.env = process.env.NODE_ENV;
+  locals.datetime = (new Date().getTime());
 
   return gulp.src(`${SRC}/pug/**/[!_]*.pug`)
     .pipe(pug({
