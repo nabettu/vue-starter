@@ -1,4 +1,4 @@
-# vue-spa-starter
+# vue-starter
 
 > A Vue.js project
 
